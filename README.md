@@ -1,6 +1,6 @@
 # springboot-druid-demo
 springboot和druid连接池整合
-## 创建peoject
+## 创建project
 web,mysql,mybatis,lombook
 ## application.properties
 配置文件添加Druid的参数
