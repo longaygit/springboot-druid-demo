@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.druid.mybatis.demo.mapper.UserMapper">
+    <resultMap id="baseResult" type="com.example.springboot.druid.mybatis.demo.model.User">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="number" column="number"/>
+        <result property="address" column="address"/>
+    </resultMap>
+    <sql id="table">
+        user
+    </sql>
+    <sql id="column">
+        name,number,address
+    </sql>
+
+    <sql id="update_condition">
+        <if test="name != null and name != ''">
+            name = #{name}
+        </if>
+    </sql>
+
+    <insert id="insertUser" keyProperty="id" useGeneratedKeys="true"
+            parameterType="com.example.springboot.druid.mybatis.demo.model.User">
+        insert into
+        user(name,number,address)
+        values
+        (#{name},#{number},#{address})
+    </insert>
+    <select id="findByNumber" resultMap="baseResult">
+        select * from
+        <include refid="table"/>
+        where number=#{number}
+    </select>
+
+</mapper>
